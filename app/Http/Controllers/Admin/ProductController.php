@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Concerns\Validator;
 use Str;
-class CategoryController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category=Category::all();
-      return view('back_end.Category.list',compact('category'));
+        $product=Product::all();
+      return view('back_end.product.list',compact('product'));
     }
 
     /**
@@ -27,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('back_end.Category.add');
+        return view('back_end.product.add');
     }
 
     /**
@@ -46,61 +46,50 @@ class CategoryController extends Controller
 
         ]);
        $request->merge(['slug'=>Str::slug($request->name)]);
-     $data=Category::create([
-        'name'=>$request->name,
-        'slug'=>$request->slug,
-        'status'=>$request->status
-
-     ]);
-    return redirect()->route('category.index');
+    
+    return redirect()->route('product.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
     
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category,$slug)
+    public function edit($id)
     {
-        $data=Category::where('slug',$slug)->first();
-        return view('back_end.Category.update',compact('data'));
+        $data=product::find($id);
+        return view('back_end.product.update',compact('data'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update( $id)
     {
         $request->merge(['slug'=>Str::slug($request->name)]);
-        Category::where('slug',$slug)->update([
-            'name'=>$request->name,
-            'slug'=>$request->slug,
-            'status'=>$request->status
-        ]);
-        return redirect()->route('category.index');
+        
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function delete($slug)
+    public function delete($id)
     {
-       Category::where('slug',$slug)->delete();
-       return redirect()->route('category.index');
+       
     }
 }
