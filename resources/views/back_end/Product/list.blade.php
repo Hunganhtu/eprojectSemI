@@ -6,7 +6,7 @@
   </div>
   <div class="card-body">
     <p class="card-text">Thêm mới danh mục !</p>
-    <a href="{{route('category.create')}}" class="btn btn-success">Thêm mới</a> 
+    <a href="{{route('product.create')}}" class="btn btn-success">Thêm mới</a> 
   </div>
 </div>
 <div class="card">
@@ -15,7 +15,7 @@
   </div>
   <!-- /.card-header -->
   <div class="card-body">
-    <table id="category" class="table table-bordered table-striped">
+    <table id="product" class="table table-bordered table-striped">
       <thead>
         <tr>
           <th>STT</th>
@@ -27,7 +27,7 @@
       </thead>
       <tbody>
 
-       @foreach($category as $data)
+       @foreach($product as $data)
          <tr>
           <td>{{$data->loop +1}}</td>
             <td>{{$data->name}}</td>
@@ -36,8 +36,8 @@
               {{($data->status)==1?'hiện':'ẩn'}}
             </td>
             <td>
-              <a href="{{route('category.update',['slug'=>$data->slug])}}" title="" class="btn btn-primary"><i class="far fa-edit"></i></a>
-              <a href="{{route('category.delete',['slug'=>$data->slug])}}" title="" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+              <a href="{{route('product.update',['id'=>$data->id])}}" title="" class="btn btn-primary"><i class="far fa-edit"></i></a>
+              <a href="{{route('product.delete',['id'=>$data->id])}}" title="" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
             </td>
         </tr>
        @endforeach
