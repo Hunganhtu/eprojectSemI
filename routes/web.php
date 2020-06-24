@@ -111,12 +111,39 @@ Route::group(['prefix' => 'user'], function () {
     })->name('user.product-layout-3');
     
 });
-
+// route admin
 Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('/',function(){
         return view('back_end.master');
     });
-   route::resources([
-    'category'=>'CategoryController'
-   ]);
+// route cateory
+   Route::group(['prefix'=>'category'],function(){
+         Route::get('/','CategoryController@index')->name('category.index');
+         Route::match(['GET' ,'POST'],'/create',[
+            'as'=>'category.create',
+            'uses'=>Request::isMethod('get')?'CategoryController@create':'CategoryController@store'
+         ]);
+         Route::get('/delete/{slug}','CategoryController@delete')->name('category.delete');
+
+         Route::match(['GET' ,'POST'],'update/{slug}',[
+            'as'=>'category.update',
+            'uses'=>Request::isMethod('get')?'CategoryController@edit':'CategoryController@update'
+         ]);
+
+   });
+   // route product
+   Route::group(['prefix'=>'product'],function(){
+         Route::get('/','ProductController@index')->name('product.index');
+         Route::match(['GET' ,'POST'],'/create',[
+            'as'=>'product.create',
+            'uses'=>Request::isMethod('get')?'ProductController@create':'ProductController@store'
+         ]);
+         Route::get('/delete/{id}','ProductController@delete')->name('product.delete');
+
+         Route::match(['GET' ,'POST'],'update/{slug}',[
+            'as'=>'product.update',
+            'uses'=>Request::isMethod('get')?'ProductController@edit':'ProductController@update'
+         ]);
+         
+   });
 });

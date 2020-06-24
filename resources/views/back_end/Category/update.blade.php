@@ -23,7 +23,7 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Name</label>
-                    <input type="text" class="form-control" placeholder="Nhập tên....." name="name" required>
+                    <input type="text" class="form-control" placeholder="Nhập tên....." name="name" required value="{{$data->name}}">
                      @if($errors->has('name'))
                         <span style="color: red">{{$errors->first('name') }}</span>
                     @endif
@@ -32,8 +32,8 @@
                   <div class="form-group">
                     <label for="exampleInputPassword1">status</label>
                     <br>
-                    <input type="radio" value="1" name="status" checked>  Hiện
-                    <input type="radio" value="0" name="status"  style="margin-left:5px">Ẩn
+                    <input type="radio" value="1" name="status" {{$data->status==1?'checked':''}}>  Hiện
+                    <input type="radio" value="0" name="status" {{$data->status==0?'checked':''}} style="margin-left:5px">Ẩn
                   </div>
                   
             

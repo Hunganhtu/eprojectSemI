@@ -22,7 +22,7 @@
           <div class="card-body">
             <div class="form-group">
               <label for="exampleInputEmail1">Tên</label>
-              <input type="text" class="form-control"  placeholder="Nhập tên sản phẩm" name="name" value="{{old('name')}}">
+              <input type="text" class="form-control"  placeholder="Nhập tên sản phẩm" name="name"  value="{{$data->name}}">
               @if($errors->has('name'))
               <label class="error" >{{$errors->first('name') }}</label>
               @endif
@@ -31,8 +31,10 @@
               <label for="inputStatus">Danh mục</label>
               <select class="form-control custom-select" name="cat_id">
                 <option selected disabled>--Chọn danh mục---</option>
-                @foreach($category as $data)
-                <option value="{{$data->id}}">{{$data->name}}</option>}
+                @foreach($category as $value)
+                <option value="{{$value->id}}" {{($data->cat_id==$value->id)?'selected':''}}>
+                  {{$value->name}}
+                </option>}
 
                 @endforeach
               </select>
@@ -49,19 +51,17 @@
                 </div>
 
               </div>
-              @if($errors->has('image'))
-              <label class="error" >{{$errors->first('image') }}</label>
-              @endif
+              <img src="{{url('public/assets/images/product')}}/{{$data->image}}" alt="" width="100px" class="mt-2">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Giá</label>
-              <input type="number" class="form-control" placeholder="Nhập tên sản phẩm" name="price"  value="{{old('price')}}" >
+              <input type="number" class="form-control" placeholder="Nhập tên sản phẩm" name="price"   value="{{$data->price}}">
               @if($errors->has('price'))
               <label class="error" >{{$errors->first('price') }}</label>
               @endif
             </div>
             <div class="form-group">
-              <label for="exampleInputFile">Ảnh </label>
+              <label for="exampleInputFile">Ảnh chi tiết </label>
               <div class="input-group">
                 <div class="custom-file">
                   <input type="file" class="custom-file-input"  name="image_detail[]" multiple >
@@ -69,14 +69,14 @@
                 </div>
                 
               </div>
-              @if($errors->has('image_detail'))
-              <label class="error" >{{$errors->first('image_detail') }}</label>
-              @endif
+             @foreach($old_detail as $value)
+              <img src="{{url('public/assets/images/product')}}/{{$value}}" alt="" width="100px" class="mt-2">
+             @endforeach
             </div>
             <div class="form-group">
              <label for="exampleInputFile">File input</label>
              <textarea class="textarea" name="description"  class="form-control"
-             style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{old('description')}}</textarea>
+             style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{$data->description}}</textarea>
              @if($errors->has('description'))
              <label class="error" >{{$errors->first('description') }}</label>
            }
@@ -86,8 +86,8 @@
        <div class="form-group">
         <label for="exampleInputPassword1">status</label>
         <br>
-        <input type="radio" value="1" name="status" checked>  Hiện
-        <input type="radio" value="0" name="status"  style="margin-left:5px"> Ẩn
+         <input type="radio" value="1" name="status" {{$data->status==1?'checked':''}}>  Hiện
+         <input type="radio" value="0" name="status" {{$data->status==0?'checked':''}} style="margin-left:5px">Ẩn
       </div>
     </div>
     <!-- /.card-body -->
