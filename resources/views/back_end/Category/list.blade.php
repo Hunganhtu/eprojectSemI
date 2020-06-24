@@ -37,7 +37,7 @@
             </td>
             <td>
               <a href="" title="" class="btn btn-primary"><i class="far fa-edit"></i></a>
-              <a href="{{route('category.destroy',['id'=>$data->id])}}" title="" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+              <a href="" title="" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
             </td>
         </tr>
        @endforeach
