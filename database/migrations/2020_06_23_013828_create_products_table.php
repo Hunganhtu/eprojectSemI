@@ -18,7 +18,9 @@ class CreateProductsTable extends Migration
             $table->string('name',150)->unique();
             $table->string('slug',100)->unique();
             $table->unsignedInteger('cat_id');
-            $table->string('image')->nullable();
+            $table->string('image');
+            $table->string('image_detail');
+            $table->decimal('price', 10, 2);
             $table->text('description')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();

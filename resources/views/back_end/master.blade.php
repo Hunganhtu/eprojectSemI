@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+   <!-- summernote -->
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
     <!-- DataTables -->
   <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -174,13 +176,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/UI/general.html" class="nav-link">
+                <a href="{{route('product.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Danh sách sản phẩm</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/UI/icons.html" class="nav-link">
+                <a href="{{route('product.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Thêm mới sản phẩm</p>
                 </a>
@@ -291,6 +293,13 @@
 <script  src="dist/js/validate.js"></script>
 <!-- ChartJS -->
 <script src="plugins/chart.js/Chart.min.js"></script>
+<script src="plugins/summernote/summernote-bs4.min.js"></script>
+<script>
+  $(function () {
+    // Summernote
+    $('.textarea').summernote()
+  })
+</script>
 <script type="text/javascript">
 $(document).ready(function () {
   bsCustomFileInput.init();

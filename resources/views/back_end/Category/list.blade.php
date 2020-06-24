@@ -2,11 +2,11 @@
 @section('main')
 <div class="card">
   <div class="card-header">
-  
+
   </div>
   <div class="card-body">
     <p class="card-text">Thêm mới danh mục !</p>
-    <a href="{{route('category.create')}}" class="btn btn-success">Thêm mới</a> 
+    <a href="{{route('category.create')}}" class="btn btn-success">Thêm mới</a>
   </div>
 </div>
 <div class="card">
@@ -29,25 +29,28 @@
 
        @foreach($category as $data)
          <tr>
-          <td>{{$data->loop +1}}</td>
+          <td>{{$loop->index +1}}</td>
             <td>{{$data->name}}</td>
             <td>{{$data->slug}}</td>
             <td>
               {{($data->status)==1?'hiện':'ẩn'}}
             </td>
             <td>
+<<<<<<< HEAD
               a
               <a href="" title="" class="btn btn-primary"><i class="far fa-edit"></i></a>
               <a href="" title="" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+=======
+              <a href="{{route('category.update',['slug'=>$data->slug])}}" title="" class="btn btn-primary"><i class="far fa-edit"></i></a>
+              <a href="{{route('category.delete',['slug'=>$data->slug])}}" title="" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+>>>>>>> ff9900640f97a72737f968e7fa6f269c7ea647cd
             </td>
         </tr>
        @endforeach
       </tbody>
-     
+
     </table>
   </div>
-  <!-- thử github -->
-  <!-- ấgshsgdg -->
-  <!-- /.card-body -->
+
 </div>
 @stop()
