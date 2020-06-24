@@ -29,7 +29,7 @@
 
        @foreach($category as $data)
          <tr>
-          <td>{{$data->loop +1}}</td>
+          <td>{{$loop->index +1}}</td>
             <td>{{$data->name}}</td>
             <td>{{$data->slug}}</td>
             <td>
@@ -37,7 +37,7 @@
             </td>
             <td>
               <a href="" title="" class="btn btn-primary"><i class="far fa-edit"></i></a>
-              <a href="{{route('category.destroy',['id'=>$data->id])}}" title="" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+              <a href="" title="" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
             </td>
         </tr>
        @endforeach
