@@ -36,8 +36,14 @@
               {{($data->status)==1?'hiện':'ẩn'}}
             </td>
             <td>
+<<<<<<< HEAD
+              a
+              <a href="" title="" class="btn btn-primary"><i class="far fa-edit"></i></a>
+              <a href="" title="" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+=======
               <a href="{{route('category.update',['slug'=>$data->slug])}}" title="" class="btn btn-primary"><i class="far fa-edit"></i></a>
               <a href="{{route('category.delete',['slug'=>$data->slug])}}" title="" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+>>>>>>> ff9900640f97a72737f968e7fa6f269c7ea647cd
             </td>
         </tr>
        @endforeach
