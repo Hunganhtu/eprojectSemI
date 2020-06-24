@@ -105,11 +105,27 @@
                 }
             });
              $('#addcategory').validate({
-                name:{
-                  required:true
+               rules: {
+                  name:{
+                    required:true
+                  }
                 },
                 messages:{
+                  name:{
                   required:"Tên dannh mục không được để trống"
+                }
+                }
+             }); 
+             $('#validate_product').validate({
+               rules: {
+                name:{
+                  required:true
+                }
+              },
+                messages:{
+                  name:{
+                  required:"Tên dannh mục không được để trống"
+                  }
                 }
              });
         });

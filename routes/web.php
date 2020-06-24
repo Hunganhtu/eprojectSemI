@@ -124,6 +124,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
             'uses'=>Request::isMethod('get')?'CategoryController@create':'CategoryController@store'
          ]);
          Route::get('/delete/{slug}','CategoryController@delete')->name('category.delete');
+
          Route::match(['GET' ,'POST'],'update/{slug}',[
             'as'=>'category.update',
             'uses'=>Request::isMethod('get')?'CategoryController@edit':'CategoryController@update'
@@ -138,6 +139,11 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
             'uses'=>Request::isMethod('get')?'ProductController@create':'ProductController@store'
          ]);
          Route::get('/delete/{id}','ProductController@delete')->name('product.delete');
+
+         Route::match(['GET' ,'POST'],'update/{slug}',[
+            'as'=>'product.update',
+            'uses'=>Request::isMethod('get')?'ProductController@edit':'ProductController@update'
+         ]);
          
    });
 });
