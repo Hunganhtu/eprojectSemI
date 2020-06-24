@@ -20,7 +20,9 @@
         <tr>
           <th>STT</th>
           <th>Tên</th>
-          <th>Slug</th>
+          <th>Tên danh mục</th>
+          <th>Giá</th>
+          <th>Ảnh</th>
           <th>Trạng Thái</th>
           <th></th>
         </tr>
@@ -28,15 +30,20 @@
       <tbody>
 
        @foreach($product as $data)
-         <tr>
+         <tr class="text-center">
           <td>{{$data->loop +1}}</td>
             <td>{{$data->name}}</td>
-            <td>{{$data->slug}}</td>
+            <td>{{$data->category->name}}</td>
+            <td>{{$data->price}}</td>
+            <td>
+              <img src="{{url('public/assets/images/product')}}/{{$data->image}}" alt="" width="100px">
+            </td>
             <td>
               {{($data->status)==1?'hiện':'ẩn'}}
             </td>
             <td>
-              <a href="{{route('product.update',['id'=>$data->id])}}" title="" class="btn btn-primary"><i class="far fa-edit"></i></a>
+              <a href="{{route('product.update',['slug'=>$data->slug])}}" title="" class="btn btn-primary"><i class="far fa-edit"></i></a>
+              <a href="" title="" class="btn btn-success"><i class="fas fa-search"></i></a>
               <a href="{{route('product.delete',['id'=>$data->id])}}" title="" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
             </td>
         </tr>

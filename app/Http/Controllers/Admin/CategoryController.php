@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Http\Requests\Category\CategoryAddRequest;
+use App\Http\Requests\Category\CategoryUpdateRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         $category=Category::all();
-      return view('back_end.Category.list',compact('category'));
+        return view('back_end.Category.list',compact('category'));
     }
 
     /**
@@ -36,23 +37,11 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Category $category)
     {
-        $this->validate($request,[
-            'name'=>'required|min:3'
-        ],[
-            'name.required'=>'Không được để rỗng tên',
-            'name.min'=>'Bạn phải nhập tên lớn hơn 3 ký tự',
-
-        ]);
-       $request->merge(['slug'=>Str::slug($request->name)]);
-     $data=Category::create([
-        'name'=>$request->name,
-        'slug'=>$request->slug,
-        'status'=>$request->status
-
-     ]);
-    return redirect()->route('category.index');
+      
+         $category->add();
+         return redirect()->route('category.index');
     }
 
     /**
@@ -81,15 +70,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(Category $category,$slug)
     {
-        $request->merge(['slug'=>Str::slug($request->name)]);
-        Category::where('slug',$slug)->update([
-            'name'=>$request->name,
-            'slug'=>$request->slug,
-            'status'=>$request->status
-        ]);
-        return redirect()->route('category.index');
+        $category->edit($slug);
+       return redirect()->route('category.index');
     }
 
     /**
@@ -98,9 +82,9 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function delete($slug)
+    public function delete(Category $category,$slug)
     {
-       Category::where('slug',$slug)->delete();
+       $category->destroys($slug);
        return redirect()->route('category.index');
     }
 }
