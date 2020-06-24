@@ -36,6 +36,7 @@
               {{($data->status)==1?'hiện':'ẩn'}}
             </td>
             <td>
+              a
               <a href="" title="" class="btn btn-primary"><i class="far fa-edit"></i></a>
               <a href="" title="" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
             </td>
