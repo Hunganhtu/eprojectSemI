@@ -29,7 +29,7 @@
 
        @foreach($category as $data)
          <tr>
-          <td>{{$data->loop +1}}</td>
+          <td>{{$loop->index +1}}</td>
             <td>{{$data->name}}</td>
             <td>{{$data->slug}}</td>
             <td>

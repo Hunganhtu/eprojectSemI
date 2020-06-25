@@ -10,7 +10,7 @@
   </div>
 </div>
 <div class="row">
- 
+
 	<div class="col-md-8">
 		  <div class="card card-primary">
               <div class="card-header">
@@ -18,14 +18,14 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" method="POST" action="" id="addcategory">
+              <form role="form" method="POST" action="" >
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Name</label>
-                    <input type="text" class="form-control" placeholder="Nhập tên....." name="name" required value="{{$data->name}}">
+                    <input type="text" class="form-control" placeholder="Nhập tên....." name="name"  value="{{$data->name}}">
                      @if($errors->has('name'))
-                        <span style="color: red">{{$errors->first('name') }}</span>
+                         <label class="error">{{$errors->first('name') }}</label>
                     @endif
                   </div>
                  

@@ -17,7 +17,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form  action="" method="POST" enctype="multipart/form-data" id="validate_product">
+        <form  action="" method="POST" enctype="multipart/form-data" >
           @csrf
           <div class="card-body">
             <div class="form-group">
@@ -49,9 +49,11 @@
                 </div>
 
               </div>
+
               @if($errors->has('image'))
               <label class="error" >{{$errors->first('image') }}</label>
               @endif
+             
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Giá</label>
@@ -71,16 +73,18 @@
               </div>
               @if($errors->has('image_detail'))
               <label class="error" >{{$errors->first('image_detail') }}</label>
+              @endif  
+              @if($errors->has('image_detail.*'))
+              <label class="error" >{{$errors->first('image_detail.*') }}</label>
               @endif
+              
             </div>
             <div class="form-group">
              <label for="exampleInputFile">File input</label>
              <textarea class="textarea" name="description"  class="form-control"
              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{old('description')}}</textarea>
              @if($errors->has('description'))
-             <label class="error" >{{$errors->first('description') }}</label>
-           }
-         }
+             <label class="error" >{{$errors->first('description')}}</label>
          @endif
        </div>
        <div class="form-group">
