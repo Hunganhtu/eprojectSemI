@@ -5,7 +5,7 @@
   
   </div>
   <div class="card-body">
-    <p class="card-text">Thêm mới danh mục !</p>
+    <p class="card-text">Thêm mới sản phẩm!</p>
     <a href="{{route('product.create')}}" class="btn btn-success">Thêm mới</a> 
   </div>
 </div>
@@ -31,7 +31,7 @@
 
        @foreach($product as $data)
          <tr class="text-center">
-          <td>{{$data->loop +1}}</td>
+          <td>{{$loop->index+1}}</td>
             <td>{{$data->name}}</td>
             <td>{{$data->category->name}}</td>
             <td>{{$data->price}}</td>
@@ -43,7 +43,7 @@
             </td>
             <td>
               <a href="{{route('product.update',['slug'=>$data->slug])}}" title="" class="btn btn-primary"><i class="far fa-edit"></i></a>
-              <a href="" title="" class="btn btn-success"><i class="fas fa-search"></i></a>
+              <a href="{{route('product.detail',['slug'=>$data->slug])}}" title="" class="btn btn-success"><i class="fas fa-search"></i></a>
               <a href="{{route('product.delete',['id'=>$data->id])}}" title="" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
             </td>
         </tr>

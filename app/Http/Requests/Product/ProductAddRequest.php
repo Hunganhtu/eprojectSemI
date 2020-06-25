@@ -13,7 +13,7 @@ class ProductAddRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,32 @@ class ProductAddRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+          'name'=>'required|min:3',
+
+            'cat_id'=>'required',
+            'image' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
+            'image_detail' => 'required',
+            'image_detail.*'=>'image|mimes:jpeg,jpg,png,gif|max:10000',
+            'price'=>'required',
+            'description'=>'required'
         ];
     }
+
+    // Thông báo lỗi
+    public function messages()
+    {
+           return [
+            'name.required'=>'Chưa nhập tên sản phẩm',
+            'name.min'=>'Bạn phải nhập tên lớn hơn 3 ký tự',
+            'cat_id.required'=>'Chưa chọn danh mục',
+            'image.required'=>'Chưa chọn ảnh sản phẩm',
+            'image.mimes'=>'Ảnh sai định dạng',
+            'image.max'=>'Kich thước ảnh quá lớn',
+            'image_detail.required'=>'Chưa chọn ảnh chi tiết',
+            'image_detail.*.image'=>'Ảnh chi tiết sai định dạng',
+            'image_detail.*.max'=>'Kich thước ảnh quá lớn',
+            'price.required'=>'Chưa nhập giá sản phẩm',
+            'description.required'=>'Chưa có mô tả sản phẩm'
+           ];
+    }   
 }

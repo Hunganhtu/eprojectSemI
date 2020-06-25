@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Http\Requests\Category\CategoryAddRequest;
-use App\Http\Requests\Category\CategoryUpdateRequest;
+use App\Http\Requests\Category\CategoryAddRequest as CatAdd;
+use App\Http\Requests\Category\CategoryUpdateRequest as CatUpdate;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -37,7 +37,7 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Category $category)
+    public function store(Category $category,CatAdd $request)
     {
       
          $category->add();
@@ -70,7 +70,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Category $category,$slug)
+    public function update(Category $category,$slug,CatUpdate $request)
     {
         $category->edit($slug);
        return redirect()->route('category.index');

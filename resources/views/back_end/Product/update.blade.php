@@ -17,7 +17,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form  action="" method="POST" enctype="multipart/form-data" id="validate_product">
+        <form  action="" method="POST" enctype="multipart/form-data" >
           @csrf
           <div class="card-body">
             <div class="form-group">
@@ -51,6 +51,10 @@
                 </div>
 
               </div>
+               @if($errors->has('image'))
+              <label class="error" >{{$errors->first('image') }}</label>
+              @endif
+              <br>
               <img src="{{url('public/assets/images/product')}}/{{$data->image}}" alt="" width="100px" class="mt-2">
             </div>
             <div class="form-group">
@@ -69,6 +73,13 @@
                 </div>
                 
               </div>
+               @if($errors->has('image_detail'))
+              <label class="error" >{{$errors->first('image_detail') }}</label>
+              @endif  
+              @if($errors->has('image_detail.*'))
+              <label class="error" >{{$errors->first('image_detail.*') }}</label>
+              @endif
+              <br>
              @foreach($old_detail as $value)
               <img src="{{url('public/assets/images/product')}}/{{$value}}" alt="" width="100px" class="mt-2">
              @endforeach

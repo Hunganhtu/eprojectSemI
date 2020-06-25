@@ -144,6 +144,6 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
             'as'=>'product.update',
             'uses'=>Request::isMethod('get')?'ProductController@edit':'ProductController@update'
          ]);
-         
+            Route::get('/detail/{slug}','ProductController@detail')->name('product.detail');
    });
 });
