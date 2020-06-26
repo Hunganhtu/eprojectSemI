@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'user'], function () {
+Route::group(['prefix' => 'user','namespace'=>'User'], function () {
     // home page
     Route::get('/','FontendController@index')->name('user.home');
     // login page
@@ -95,15 +95,7 @@ Route::group(['prefix' => 'user'], function () {
         return view('font_end.shop');
     })->name('user.shop');
 
-     // product-layout-1 page
-     Route::get('product-layout-1',function(){
-        return view('font_end.product-layout1');
-    })->name('user.product-layout-1');
-
-     // product-layout-2 page
-     Route::get('product-layout-2',function(){
-        return view('font_end.product-layout2');
-    })->name('user.product-layout-2');
+    
 
      // product-layout-3 page
      Route::get('product-layout-3',function(){

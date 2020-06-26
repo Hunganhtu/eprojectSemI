@@ -241,6 +241,42 @@
                                         <li><i class="fa fa-check"></i><span class="ttm-list-li-content">Suspendisse id metus rutrum, dictum massa vitae.</span></li>
                                     </ul>
                                 </div>
+                                <div class="pt-15">
+                                      <h6>SPECIFICATIONS</h6>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>hahaha</th>
+                                                    <th>ahhaha</th>
+                                                 
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>hahah</td>
+                                                    <td>hahah</td>
+                                                </tr> 
+                                                <tr>
+                                                    <td>hahah</td>
+                                                    <td>hahah</td>
+                                                </tr> 
+                                                <tr>
+                                                    <td>hahah</td>
+                                                    <td>hahah</td>
+                                                </tr> 
+                                                <tr>
+                                                    <td>hahah</td>
+                                                    <td>hahah</td>
+                                                </tr> 
+                                                <tr>
+                                                    <td>hahah</td>
+                                                    <td>hahah</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div><!-- content-inner end-->
                             <!-- content-inner -->
                             <div class="content-inner">

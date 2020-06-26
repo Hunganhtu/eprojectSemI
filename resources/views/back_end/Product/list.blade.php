@@ -15,7 +15,7 @@
   </div>
   <!-- /.card-header -->
   <div class="card-body">
-    <table id="product" class="table table-bordered table-striped">
+    <table  id="category" class="table table-bordered table-striped">
       <thead>
         <tr>
           <th>STT</th>
@@ -34,7 +34,7 @@
           <td>{{$loop->index+1}}</td>
             <td>{{$data->name}}</td>
             <td>{{$data->category->name}}</td>
-            <td>{{$data->price}}</td>
+            <td>{{number_format($data->price)}}</td>
             <td>
               <img src="{{url('public/assets/images/product')}}/{{$data->image}}" alt="" width="100px">
             </td>

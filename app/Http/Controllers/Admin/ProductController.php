@@ -29,7 +29,8 @@ class ProductController extends Controller
     public function create()
     {
         $category=Category::all();
-        return view('back_end.product.add',compact('category'));
+        $product=Product::all();
+        return view('back_end.product.add',compact('category','product'));
     }
 
     /**
@@ -71,7 +72,10 @@ class ProductController extends Controller
        $old_image=$data->image;
        $old_details=$data->image_detail;
        $old_detail=json_decode($old_details);
-       return view('back_end.product.update',compact('data','category','old_detail'));
+       $product=Product::all();
+       $related_product=$data->related_product;
+       $related_product=json_decode($related_product);
+       return view('back_end.product.update',compact('data','category','old_detail','product','related_product'));
       
 }
 
@@ -112,10 +116,18 @@ class ProductController extends Controller
     }
     public function detail($slug)
     {
-       
+     
         $product=Product::where('slug',$slug)->first();
-         $image_details=$product->image_detail;
+        $id_relate=$product->related_product;
+        $id_relate=json_decode($id_relate);
+        $image_details=$product->image_detail;
        $image_detail=json_decode($image_details);
-        return view('back_end.product.product-detail',compact('product','image_detail'));
+       $related_product=[];
+      foreach ($id_relate as $value) {
+           $p=Product::where('id',$value)->first();
+           array_push($related_product, $p);  
+      }
+    
+        return view('back_end.product.product-detail',compact('product','image_detail','related_product'));
     }
 }

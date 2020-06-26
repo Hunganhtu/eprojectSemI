@@ -80,13 +80,39 @@
               
             </div>
             <div class="form-group">
-             <label for="exampleInputFile">File input</label>
+             <label for="exampleInputFile">Mô tả</label>
              <textarea class="textarea" name="description"  class="form-control"
              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{old('description')}}</textarea>
              @if($errors->has('description'))
              <label class="error" >{{$errors->first('description')}}</label>
          @endif
        </div>
+        <div class="form-group">
+             <label for="exampleInputFile">Chính sách bảo mật</label>
+             <textarea class="textarea" name="privacy"  class="form-control"
+             style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{old('privacy')}}</textarea>
+            
+       </div>
+       <div class="form-group">
+             <label for="exampleInputFile">Điều khoản dịch vụ</label>
+             <textarea class="textarea" name="service"  class="form-control"
+             style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{old('service')}}</textarea>
+            
+       </div>
+        <div class="form-group">
+             <label for="exampleInputFile">Thông số kỹ thuật</label>
+             <textarea class="textarea" name="paramaster"  class="form-control"
+             style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{old('paramaster')}}</textarea>
+           
+       </div>
+       <div class="form-group">
+          <label for="sel2">Chọn sản phẩm liên quan</label>
+          <select multiple class="form-control" id="sel2" name="related_product[]">
+              @foreach($product as $data)
+                <option value="{{$data->id}}">{{$data->name}}</option>}
+                @endforeach
+          </select>
+    </div>
        <div class="form-group">
         <label for="exampleInputPassword1">status</label>
         <br>

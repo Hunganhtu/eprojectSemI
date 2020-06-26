@@ -49,8 +49,8 @@
               </div>
               <span class="review-no">41 reviews</span>
             </div>
-            <h5 class="product-title">Mô tả :</h5>
-            <p class="product-description">{!!$product->description!!}</p>
+           
+            <p class="product-description"></p>
             <h4 class="price">Giá: <span>{{number_format($product->price)}}</span></h4>
            
             
@@ -61,5 +61,62 @@
           </div>
         </div>
     </div>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="desscription-tab" data-toggle="tab" href="#desscription" role="tab" aria-controls="desscription" aria-selected="true">Mô tả</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="Privacy-tab" data-toggle="tab" href="#Privacy" role="tab" aria-controls="Privacy" aria-selected="false"> 
+Chính sách bảo mật</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="service-tab" data-toggle="tab" href="#service" role="tab" aria-controls="service" aria-selected="false"> 
+Điều khoản dịch vụ</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="desscription" role="tabpanel" aria-labelledby="desscription-tab">
+    {!!$product->description!!}
+  </div>
+  <div class="tab-pane fade" id="Privacy" role="tabpanel" aria-labelledby="Privacy-tab">
+       {!!$product->privacy!!}
+</div>
+  <div class="tab-pane fade" id="service" role="tabpanel" aria-labelledby="service-tab">
+    {!!$product->service!!}
+  </div>
+</div>
+ <div>
+  <h5><b>Thông số kỹ thuật</b></h5>
+   {!!$product->paramaster!!}
+ </div>
 
+  <div>
+    
+   @if(count($related_product)>0)
+   <h5><b>Sản phẩm liên quan</b></h5>  
+      <div class="container">
+    <div class="product-list">
+      <div class="row">
+        @foreach($related_product as $data)
+        <div class="col-md-3 col-sm-6">
+          <div class="white-box">
+            <div class="product-img">
+              <img src="{{url('public/assets/images/product')}}/{{$data->image}}">
+            </div>
+            <div class="product-bottom">
+              <div class="product-name">{{$data->name}}</div>
+              <div class="price">
+                <span class="rupee-icon"></span>{{number_format($data->price)}}
+              </div>
+              <a href="{{route('product.detail',['slug'=>$data->slug])}}" class="blue-btn">Xem chi tiết</a>
+            </div>
+          </div>
+        </div>
+          @endforeach
+      </div>
+    </div>
+ 
+</div> 
+       @endif
+    </div>
 @stop()
