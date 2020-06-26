@@ -8,7 +8,7 @@ use Str;
 class Product extends Model
 {
     
-    protected $fillable=['name','slug','image','image_detail','price','cat_id','description','status'];
+    protected $fillable=['name','slug','image','image_detail','price','cat_id','description','privacy','service','related_product','paramaster','status'];
      public function category()
    {
    		return $this->hasOne(Category::class ,'id','cat_id');
@@ -16,8 +16,7 @@ class Product extends Model
 
    public function add()
    {
-   	 
-        request()->merge(['slug'=>Str::slug(request()->name)]);
+        
 
         if(request()->has('image')){
             $file=request()->image;
@@ -30,8 +29,6 @@ class Product extends Model
         $image_details=[];
         if(request()->has('image_detail')){
             $files=request()->image_detail;
-           
-
             foreach ($files as $value) {
                 $detail=$value->storeAs("/",rand(100000,999999).$value->getClientOriginalName());
                 array_push($image_details,$detail);
@@ -40,22 +37,38 @@ class Product extends Model
             }
            
                 $image_detail=json_encode($image_details);
-                $product=Product::create([
-                    'name'=>request()->name,
-                    'slug'=>Str::slug(request()->name),
-                    'image_detail'=>$image_detail,
-                    'price'=>request()->price,
-                    'status'=>request()->status,
-                    'cat_id'=>request()->cat_id,
-                    'description'=>request()->description,
-                    'image'=>$image
-                ]);
-                return $product;
+               
                 
             }
            
-        
-        
+        $related_product=[];
+        if(request()->has('related_product')){
+            $related_products=request()->related_product;
+
+            foreach ($related_products as $value) {
+                
+                array_push($related_product,$value);
+              
+            }
+   
+            }
+
+          $related_product=json_encode($related_product);
+         $product=Product::create([
+                'name'=>request()->name,
+                'slug'=>Str::slug(request()->name),
+                'image_detail'=>$image_detail,
+                'price'=>request()->price,
+                'status'=>request()->status,
+                'cat_id'=>request()->cat_id,
+                'description'=>request()->description,
+                'privacy'=>request()->privacy,
+                'service'=>request()->service,
+                'paramaster'=>request()->paramaster,
+                'related_product'=>$related_product,
+                'image'=>$image
+ 			]);
+                return $product;
 
    }
    public function edit($slug)
@@ -86,29 +99,41 @@ class Product extends Model
 
   if(request()->has('image_detail')){
 
-    $files=request()->image_detail;
+	    $files=request()->image_detail;
 
-    foreach ($files as $value) {
-        $detail=$value->storeAs("/",rand(100000,999999).$value->getClientOriginalName());
-        array_push($image_details,$detail);
-        $value->move(base_path('public/assets/images/product'),$detail);
+	    foreach ($files as $value) {
+	        $detail=$value->storeAs("/",rand(100000,999999).$value->getClientOriginalName());
+	        array_push($image_details,$detail);
+	        $value->move(base_path('public/assets/images/product'),$detail);
 
-    }
-    foreach ($old_detail as $value) {
-        $Path='public/assets/images/product/'. $value;
-        if (unlink($Path)) {    
-            echo "success";
-        } else {
-            echo "fail";    
-        }
-    }
-   
-     $image_detail=json_encode($image_details);
-}
-else {
-  $image_detail=$data->image_detail;
-}
-
+	    }
+	    foreach ($old_detail as $value) {
+	        $Path='public/assets/images/product/'. $value;
+	        if (unlink($Path)) {    
+	            echo "success";
+	        } else {
+	            echo "fail";    
+	        }
+	    }
+	   
+	     $image_detail=json_encode($image_details);
+	}else{
+	 	 $image_detail=$data->image_detail;
+	}
+		$related_products=[];
+        if(request()->has('related_product')){
+            $related_product=request()->related_product;
+            foreach ($related_product as $value) {           
+                array_push($related_products,$value);         
+            }
+           
+                $related_product=json_encode($related_products);
+               
+              
+            }
+            else {
+		 		 $related_product=$data->related_product;
+			}
 $updateproduct=Product::where('slug',$slug)->update([
     'name'=>request()->name,
     'slug'=>Str::slug(request()->name),
@@ -117,8 +142,12 @@ $updateproduct=Product::where('slug',$slug)->update([
     'status'=>request()->status,
     'cat_id'=>request()->cat_id,
     'description'=>request()->description,
+    'privacy'=>request()->privacy,
+    'service'=>request()->service,
+    'paramaster'=>request()->paramaster,
+    'related_product'=>$related_product,
     'image'=>$image
-]);
+	]);
 
 return $updateproduct;
 

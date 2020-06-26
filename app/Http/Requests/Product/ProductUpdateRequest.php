@@ -31,7 +31,7 @@ class ProductUpdateRequest extends FormRequest
            
             'image_detail.*'=>'image|mimes:jpeg,jpg,png,gif|max:10000',
             'price'=>'required',
-            'description'=>'required'
+            
         ];
     }
 
@@ -49,7 +49,7 @@ class ProductUpdateRequest extends FormRequest
             'image_detail.*.image'=>'Ảnh chi tiết sai định dạng',
             'image_detail.*.max'=>'Kich thước ảnh quá lớn',
             'price.required'=>'Chưa nhập giá sản phẩm',
-            'description.required'=>'Chưa có mô tả sản phẩm'
+          
            ];
     }    
 }

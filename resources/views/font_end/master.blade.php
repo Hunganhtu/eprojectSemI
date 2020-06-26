@@ -352,8 +352,7 @@
                                                                     <h6 class="title">Shop Product Layout</h6>
                                                                     <div class="content">
                                                                         <ul class="menu-col">
-                                                                            <li><a href="{{route('user.product-layout-1')}}">Product Layout 1</a></li>
-                                                                            <li><a href="{{route('user.product-layout-2')}}">Product Layout 2</a></li>
+                                                                            
                                                                             <li><a href="{{route('user.product-layout-3')}}">Product Layout 3</a></li>
                                                                         </ul>
                                                                     </div>

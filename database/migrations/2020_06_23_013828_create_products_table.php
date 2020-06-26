@@ -22,6 +22,10 @@ class CreateProductsTable extends Migration
             $table->string('image_detail');
             $table->decimal('price', 10, 2);
             $table->text('description')->nullable();
+            $table->text('priviacy')->nullable();
+            $table->text('service')->nullable();
+            $table->text('paramaster')->nullable();
+            $table->string('related_product')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
 
